@@ -11,7 +11,10 @@ export enum GameMode {
   MULTIPLICATION = 'MULTIPLICATION',
   DIVISION = 'DIVISION',
   MIXED = 'MIXED',
-  TEST_PREP = 'TEST_PREP'
+  TEST_PREP = 'TEST_PREP',
+  SEQUENCE = 'SEQUENCE',
+  COMPARISON = 'COMPARISON',
+  UNITS = 'UNITS'
 }
 
 export interface UserStats {
@@ -34,6 +37,7 @@ export interface UserProfile {
   dailyGoal: number;
   theme: 'light' | 'dark';
   soundEnabled: boolean;
+  zenMode: boolean;
   stats: UserStats;
   badges: string[];
 }
@@ -44,4 +48,5 @@ export interface MathProblem {
   answer: number;
   options: number[];
   difficulty: number;
+  unitLabel?: string;
 }

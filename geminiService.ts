@@ -1,16 +1,14 @@
 
-import { GoogleGenAI, Type } from "@google/genai";
-
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+import { GoogleGenAI } from "@google/genai";
 
 export async function getStepByStepSolution(question: string, answer: number) {
   try {
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
       contents: `Explain the step-by-step logic to solve this math problem: ${question}. The answer is ${answer}. Make it simple and educational.`,
       config: {
         temperature: 0.7,
-        // Ensure maxOutputTokens is paired with thinkingBudget for Gemini 3 models
         maxOutputTokens: 500,
         thinkingConfig: { thinkingBudget: 100 },
       }
@@ -24,12 +22,12 @@ export async function getStepByStepSolution(question: string, answer: number) {
 
 export async function getCustomMathTrick(topic: string) {
   try {
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
       contents: `Provide a clever mental math trick or shortcut for ${topic}. Include an example.`,
       config: {
         temperature: 1,
-        // Ensure maxOutputTokens is paired with thinkingBudget for Gemini 3 models
         maxOutputTokens: 300,
         thinkingConfig: { thinkingBudget: 50 },
       }
